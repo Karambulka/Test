@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-    private CubePos nowCube = new CubePos(0, 1, 0);
-    public float cubeChangePlaceSpeed = 0.5f;
+    private CubePos CurrentCube = new CubePos(0, 1, 0);
+    public float CubeChangePlaceSpeed = 0.5f;
     public Transform CubeToPlace;
 
     private List<Vector3> allCubesPositions = new List<Vector3>()
@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
         {
             SpawnPositions();
 
-            yield return new WaitForSeconds(cubeChangePlaceSpeed);
+            yield return new WaitForSeconds(CubeChangePlaceSpeed);
         }
     }
 
@@ -41,46 +41,46 @@ public class GameController : MonoBehaviour
 
     List<Vector3> positions = new List<Vector3>();
     
-    if(IsPositionEmpty(new Vector3(nowCube.x + 1, nowCube.y, nowCube.z))) 
+    if(IsPositionEmpty(new Vector3(CurrentCube.x + 1, CurrentCube.y, CurrentCube.z))) 
     {
-        positions.Add(nowCube.x + 1, nowCube.y, nowCube.z);     
+        positions.Add(CurrentCube.x + 1, CurrentCube.y, CurrentCube.z);     
     }
 
-else if (IsPositionEmpty(new Vector3(nowCube.x - 1, nowCube.y, nowCube.z)))
+else if (IsPositionEmpty(new Vector3(CurrentCube.x - 1, CurrentCube.y, CurrentCube.z)))
 {
-    positions.Add(nowCube.x - 1, nowCube.y, nowCube.z);
+    positions.Add(CurrentCube.x - 1, CurrentCube.y, CurrentCube.z);
 }
 
-else if (IsPositionEmpty(new Vector3(nowCube.x, nowCube.y + 1, nowCube.z)))
+else if (IsPositionEmpty(new Vector3(CurrentCube.x, CurrentCube.y + 1, CurrentCube.z)))
 {
-    positions.Add(nowCube.x, nowCube.y + 1, nowCube.z);
+    positions.Add(CurrentCube.x, CurrentCube.y + 1, CurrentCube.z);
 }
 
-else if (IsPositionEmpty(new Vector3(nowCube.x, nowCube.y - 1, nowCube.z)))
+else if (IsPositionEmpty(new Vector3(CurrentCube.x, CurrentCube.y - 1, CurrentCube.z)))
 {
-    positions.Add(nowCube.x, nowCube.y - 1, nowCube.z);
+    positions.Add(CurrentCube.x, CurrentCube.y - 1, CurrentCube.z);
 }
 
-else if (IsPositionEmpty(new Vector3(nowCube.x, nowCube.y, nowCube.z + 1)))
+else if (IsPositionEmpty(new Vector3(CurrentCube.x, CurrentCube.y, CurrentCube.z + 1)))
 {
-    positions.Add(nowCube.x, nowCube.y, nowCube.z + 1);
+    positions.Add(CurrentCube.x, CurrentCube.y, CurrentCube.z + 1);
 }
 
-else if (IsPositionEmpty(new Vector3(nowCube.x, nowCube.y, nowCube.z-1)))
+else if (IsPositionEmpty(new Vector3(CurrentCube.x, CurrentCube.y, CurrentCube.z-1)))
 {
-    positions.Add(nowCube.x, nowCube.y, nowCube.z - 1);
+    positions.Add(CurrentCube.x, CurrentCube.y, CurrentCube.z - 1);
 }
 
 
 
-private bool IsPositionEmpty(Vector3 targetpos)
+private bool IsPositionEmpty(Vector3 Targetpos)
     {
     if (pos.y == 0)
         return false;
 
     foreach (Vector3 pos in AllCubesPositions)
     {
-        if(pos.x==targetpos.x && pos.y==targetpos.y && pos.z==targetpos.z)
+        if(pos.x == Targetpos.x && pos.y == Targetpos.y && pos.z == Targetpos.z)
             return false:
     }
     return true;
@@ -104,7 +104,7 @@ struct CubePos
         return new Vector(x, y, z);
     }
 
-    public void setVector(Vector3 pos)
+    public void SetVector(Vector3 pos)
     {
         x = Convert.ToInt32(pos.x);
         y = Convert.ToInt32(pos.y);
